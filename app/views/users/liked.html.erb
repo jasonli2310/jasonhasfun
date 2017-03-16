@@ -1,0 +1,6 @@
+<ul>
+  <% @likes.each do |like| %>
+  <li><%= like.photo.caption %></li>
+  <li><img src="<%= like.photo.image %>"></li>
+  <% end %>
+  +</ul>

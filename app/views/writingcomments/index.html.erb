@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>
+    Writingcomments
+    <a href="/writingcomments/new" class="btn btn-xs btn-success">New Writingcomment</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Writing</th>
+        <th>Body</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @writingcomments.each do |writingcomment| %>
+      <tr>
+        <td><%= writingcomment.writing_id %></td>
+        <td><%= writingcomment.body %></td>
+        <td>
+          <a href="/writingcomments/<%= writingcomment.id %>" class="btn btn-primary">Show</a>
+          <a href="/writingcomments/<%= writingcomment.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_writingcomment/<%= writingcomment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<!-- Validation failure messages -->
+<% if @inmail.errors.any? %>
+<% @inmail.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Sidebar menu</span>
+          </div>
+
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><h4>Jason Has Fun</h4></li>
+
+
+              <li>
+                <a href="/photos">
+                  <i class="fa fa-fw fa-file-photo-o"></i>
+                  <span class="hidden-sm">
+                    Photos
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="/writings">
+                  <i class="fa fa-fw fa-file-text-o"></i>
+                  <span class="hidden-sm">
+                    Words
+                  </span></a>
+                </li>
+
+                <li>
+                  <a href="/projects">
+                    <i class="fa fa-fw fa-hand-peace-o"></i>
+                    <span class="hidden-sm">
+                      Projects
+                    </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/writings">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                    <span class="hidden-sm">
+                      Back
+                    </span>
+                  </a>
+                </li>
+
+                <% if current_user.present? %>
+                <li>
+                  <a href="/users/edit">
+                    <i class="fa fa-fw fa-edit"></i>
+                    <%= current_user.username %>
+                  </a>
+                </li>
+                <li>
+                  <a href="/users/sign_out" data-method="delete" rel="nofollow">
+                    <i class="fa fa-fw fa-sign-out"></i>
+                    Sign Out
+                  </a>
+                </li>
+                <% else %>
+                <li>
+                  <a href="/users/sign_in">
+                    Sign In
+                  </a>
+                </li>
+                <li>
+                  <a href="/users/sign_up">
+                    Sign Up
+                  </a>
+                </li>
+                <% end %>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-9">
+        <h3>Edit Inmail #<%= @inmail.id %></h3>
+
+        <div class="row">
+          <div class="col-md-12">
+            <form action="/update_inmail/<%= @inmail.id %>" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <!-- Label and input for body -->
+              <div class="form-group">
+                <label for="body" class="control-label">
+                  Body
+                </label>
+
+                <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @inmail.body %></textarea>
+              </div>
+
+              <!-- Label and input for name -->
+              <div class="form-group">
+                <label for="name" class="control-label">
+                  Name
+                </label>
+
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @inmail.name %>">
+              </div>
+
+              <!-- Label and input for user_id -->
+              <div class="form-group">
+                <label for="user_id" class="control-label">
+                  User
+                </label>
+
+                <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @inmail.user_id %>">
+              </div>
+
+              <!-- Label and input for email -->
+              <div class="form-group">
+                <label for="email" class="control-label">
+                  Email
+                </label>
+
+                <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="<%= @inmail.email %>">
+              </div>
+
+              <!-- Label and input for subject -->
+              <div class="form-group">
+                <label for="subject" class="control-label">
+                  Subject
+                </label>
+
+                <textarea id="subject" name="subject" placeholder="Subject" class="form-control" rows="3"><%= @inmail.subject %></textarea>
+              </div>
+
+              <button class="btn btn-warning">
+                Update Inmail
+              </button>
+              or
+              <a href="/inmails/<%= @inmail.id %>">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>

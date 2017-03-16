@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @writingcomment.errors.any? %>
+  <% @writingcomment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Writingcomment</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_writingcomment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for writing_id -->
+      <div class="form-group">
+        <label for="writing_id" class="control-label">
+          Writing
+        </label>
+
+        <input type="text" id="writing_id" name="writing_id" placeholder="Writing" class="form-control" value="<%= @writingcomment.writing_id %>">
+      </div>
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @writingcomment.body %></textarea>
+      </div>
+
+      <button class="btn btn-success">
+        Create Writingcomment
+      </button>
+      or
+      <a href="/writingcomments">Cancel</a>
+    </form>
+  </div>
+</div>
